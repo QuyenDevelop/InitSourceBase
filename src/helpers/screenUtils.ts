@@ -1,4 +1,11 @@
-import { Dimensions, PixelRatio, Platform, StatusBar } from "react-native";
+import { OSConfig } from "@configs";
+import {
+  Dimensions,
+  PixelRatio,
+  Platform,
+  PlatformIOSStatic,
+  StatusBar,
+} from "react-native";
 import deviceInfoModule from "react-native-device-info";
 const { width, height } = Dimensions.get("screen");
 const lagerValue = width > height ? width : height;
@@ -41,5 +48,12 @@ export const ScreenUtils = {
   scale(value: number) {
     const heightPercent = (value * deviceHeight) / 667;
     return PixelRatio.roundToNearestPixel(heightPercent);
+  },
+  isPad() {
+    if (Platform.OS === OSConfig.IOS) {
+      const platformIOS = Platform as PlatformIOSStatic;
+      return platformIOS.isPad;
+    }
+    return false;
   },
 };

@@ -14,7 +14,6 @@ export class BaseApi {
   createDefaultHeader() {
     return {
       "Accept-Language": currentLanguage ?? "vi-VN",
-      Authorization: this.apiKey,
     };
   }
 

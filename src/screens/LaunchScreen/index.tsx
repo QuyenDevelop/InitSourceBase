@@ -12,7 +12,7 @@ type Props = NativeStackScreenProps<RootStackParamList>;
 export const LaunchScreen: FunctionComponent<Props> = ({ navigation }) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate(SCREENS.HOME_STACK);
+      navigation.navigate(SCREENS.BOTTOM_TAB_NAVIGATION);
     }, 3000);
   }, [navigation]);
 

@@ -25,25 +25,31 @@ type DetailScreenRouteProp = RouteProp<
 export const DetailScreen: FunctionComponent = () => {
   const navigation = useNavigation<DetailScreenNavigationProp>();
   const route = useRoute<DetailScreenRouteProp>();
-  const { item } = route.params;
+  const { item } = route.params || {};
 
   const goBack = () => {
     navigation.goBack();
   };
 
   return (
-    <TouchableWithoutFeedback onPress={goBack}>
-      <View style={[styles.container, { backgroundColor: item.avg_color }]}>
-        <Text>Photographer: {item.photographer}</Text>
-        <FastImage
-          source={{
-            uri: item.src.portrait,
-            priority: FastImage.priority.high,
-          }}
-          resizeMode={FastImage.resizeMode.contain}
-          style={styles.photoDimensions}
-        />
-      </View>
-    </TouchableWithoutFeedback>
+    <>
+      {item ? (
+        <TouchableWithoutFeedback onPress={goBack}>
+          <View style={[styles.container, { backgroundColor: item.avg_color }]}>
+            <Text>Photographer: {item.photographer}</Text>
+            <FastImage
+              source={{
+                uri: item.src.portrait,
+                priority: FastImage.priority.high,
+              }}
+              resizeMode={FastImage.resizeMode.contain}
+              style={styles.photoDimensions}
+            />
+          </View>
+        </TouchableWithoutFeedback>
+      ) : (
+        <Text>No data</Text>
+      )}
+    </>
   );
 };
